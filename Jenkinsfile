@@ -1,27 +1,28 @@
 pipeline {
     agent {
         docker{
-            image "maven:3.8.2-jdk-11"
+            image "maven:3.6.0-jdk-13"
+            label "docker"
         }
     }
 
     stages {
         stage("Clean"){
             steps {
-                bat "mvn -version"
-                bat "mvn clean"
+                sh "mvn -version"
+                sh "mvn clean"
             }
         }
 
         stage("test"){
             steps {
-                bat "mvn test"
+                sh "mvn test"
             }
         }
 
         stage('Build War'){
             steps {
-                bat 'mvn package'
+                sh 'mvn package'
                 stash includes: 'target/*.war', name: 'targetfiles'
             }
         }
@@ -29,7 +30,7 @@ pipeline {
             steps{
                 withSonarQubeEnv('sonarqube'){
                 //sh "${scannerHome}/bin/sonar-scanner"
-                bat 'mvn sonar:sonar'
+                sh 'mvn sonar:sonar'
                 }
             }
         }

@@ -46,7 +46,7 @@ pipeline {
                           -Dsonar.projectKey=com.javarticles.webapp:webappExample \
                           -Dsonar.projectName=SimpleExpressExample \
                           -Dsonar.projectVersion=0.0.${BUILD_NUMBER} \
-                          -Dsonar.host.url=http://mysonarqube:9000 \
+                          -Dsonar.host.url=http://localhost:9000 \
                           -Dsonar.sources=. \
                           -Dsonar.login=admin \
                           -Dsonar.password=admin"

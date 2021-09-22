@@ -45,10 +45,6 @@ pipeline {
                 sh 'mvn sonar:sonar'
                 }
             }
-            timeout(time: 3, unit: 'MINUTES') {
-              // In case of SonarQube failure or direct timeout exceed, stop Pipeline
-              waitForQualityGate abortPipeline: qualityGateValidation(waitForQualityGate())
-            }
           }
       }
   }
